@@ -1,0 +1,23 @@
+// Given an integer array nums of unique elements, return all possible subsets (the power set).
+
+// The solution set must not contain duplicate subsets. Return the solution in any order.
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> subset;
+        backtrack(0, subset, res, nums);
+        return res;
+    }
+
+private:
+    void backtrack(int start, vector<int>& subset, vector<vector<int>>& res, vector<int>& nums) {
+        res.push_back(subset);
+
+        for (int i = start; i < nums.size(); i++) {
+            subset.push_back(nums[i]);
+            backtrack(i + 1, subset, res, nums);
+            subset.pop_back();
+        }
+    }
+};
